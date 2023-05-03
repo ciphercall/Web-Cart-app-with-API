@@ -1,0 +1,257 @@
+﻿@using System.Web.UI.WebControls
+@using AslWebCartAPI.Models
+@model AslWebCartAPI.Models.DTOs.CartCategoryDTO
+
+@{
+    ViewBag.Title = "Update";
+
+    List<SelectListItem> levelgroup = new List<SelectListItem>();
+    levelgroup.Add(new SelectListItem { Text = "FIRST", Value = "FIRST" });
+    levelgroup.Add(new SelectListItem { Text = "LAST", Value = "LAST" });
+    levelgroup.Add(new SelectListItem { Text = "MIDDLE", Value = "MIDDLE" });
+
+
+
+
+
+}
+
+
+
+
+
+
+@using (Html.BeginForm("Update", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+
+
+
+
+    AslWebCartContext db = new AslWebCartContext();
+
+    <div id="contentHeaderBox">
+        <h1 style="padding-left:16px">Category Save Form</h1>
+    </div>
+    <br />
+    <div class="btn-group pull-right" id="editOption">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-expanded="false">
+            <i class="fa fa-cog"></i>
+        </button>
+        <ul class="dropdown-menu pull-right" style="" role="menu">
+
+            <li>
+                <a href="@Url.Action("Create", "Category")"><i class="fa fa-plus"></i> Create</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Update", "Category")"><i class="fa fa-edit"></i> Update</a>
+            </li>
+            @*<li>
+                    <a href="@Url.Action("Delete", "JobInformation")"><i class="fa fa-times"></i> Delete</a>
+                </li>*@
+
+        </ul>
+    </div>
+    @Html.TextBoxFor(model => model.CategoryId, new { id = "ID" })
+    @Html.TextBoxFor(model => model.CategoryId, new { id = "categoryID", @Value = TempData["CatID"] })
+    <div class="col-md-12">
+        <div class="form-group">
+           
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.Label("Category Name", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control", id = "categoryName", @placeholder = "Category Name", autofocus = true })
+
+                </div>
+
+
+                <div class="col-md-2">
+                    @Html.Label("Level Group Name", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.LevelGroup, levelgroup, "--Select--", new { @class = "form-control", id = "levelGroup" })
+
+                </div>
+
+
+                <label for="photo">Upload Image:</label>
+                <input type="file" name="photo" id="photo" style="width: 100%;" />
+
+
+
+
+
+                <div class="col-md-2">
+
+
+
+                    <input id="SubmitId" type="submit" class="btn btn-info" value="Update" />
+
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+        @{
+    var listofdata = (from n in db.KART_CATEGORY select n).ToList();
+        }
+        <div class="panel-heading">Category Information</div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+
+                    <th>
+                        Category Name
+                    </th>
+
+                    <th>
+                        Level Group
+                    </th>
+                    <th>Logo</th>
+                </tr>
+
+                @foreach (var item in listofdata)
+                {
+                    string im = Convert.ToString(item.CATID);
+                    string imageurl = "~/image-category/" + im + ".png";
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CATNM)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LEVELGR)
+                        </td>
+
+                        <td><img src="@Url.Content(imageurl)" width="20px" height="20px" /></td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $('#categoryName').autocomplete({
+                source: function (request, response) {
+
+
+                    $.ajax({
+                        url: '@Url.Action("CategoryListTag", "Category")',
+                        dataType: "json",
+                        data: {
+                            term: request.term
+
+                        },
+                        success: function (data) {
+                            //response(data);
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item,
+                                    value: item
+                                };
+                            }));
+                        }
+                    });
+
+                },
+                change: $('#categoryName').keyup(function (e) {
+
+                    $('#categoryName').keyup(_.debounce(txtOneChanged(e.keyCode), 1000));
+
+                }),
+                //change: $('#categoryName').keyup(_.debounce(txtOneChanged, 500)),
+                select: function (event, ui) {
+                    $("#categoryName").val(ui.item.label);
+
+                    txtOneChanged();
+                }
+
+
+
+            });
+
+
+
+        });
+
+
+        function txtOneChanged(value) {
+
+            if (value != 8) {
+                var changedText = $("#categoryName").val();
+
+
+                var Name = document.getElementById('categoryName');
+                var txtBox = document.getElementById('categoryID');
+                var txtBox2 = document.getElementById('levelGroup');
+
+                var txtbox3 = document.getElementById('ID');
+
+                if (changedText != "") {
+
+                    $.getJSON(
+                        '/Category/DynamicautocompleteCat', { "ChangedText": changedText },
+                        function (result) {
+                            Name.value = result.CategoryName;
+                            txtBox.value = result.CatID;
+                            txtBox2.value = result.LevelGroup;
+                            if (result.CatID != 0) {
+                                txtbox3.value = $("#categoryID").val();
+                            }
+
+                            //document.getElementById("categoryName").focus();
+                        });
+                }
+                if ($("#categoryID").val() != "") {
+                    txtbox3.value = $("#categoryID").val();
+                }
+
+            }
+
+
+
+        }
+    </script>
+    <style type="text/css">
+        .ui-autocomplete {
+            position: absolute;
+            cursor: default;
+            background: #f0ffff;
+            max-height: 200px; /*scroll box height*/
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+            /* add padding to account for vertical scrollbar */
+            padding-right: 20px;
+        }
+    </style>
+
+
+
+
+
+
+}
+
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+
+<script src="~/Scripts/Underscore.js"></script>
+
+@*<script src="~/Scripts/Category/CategoryUpdate.js"></script>*@

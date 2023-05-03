@@ -1,0 +1,365 @@
+﻿@model AslWebCartAPI.Models.DTOs.ItemFilterDTO
+
+@{
+    ViewBag.Title = "Index";
+
+    if (HttpContext.Current.Session["LoggedUserType"] == null)
+    {
+        Response.Redirect(Url.Action("Index", "Login"));
+    }
+
+    var LoggedUserTp = HttpContext.Current.Session["LoggedUserType"].ToString();
+    var LoggedUserStatus = HttpContext.Current.Session["LoggedUserStatus"].ToString();
+    var LoggedCompanyStatus = HttpContext.Current.Session["LoggedCompanyStatus"].ToString();
+
+    if ((LoggedUserTp == "CompanyAdmin" || LoggedUserTp == "AslSuperadmin") && LoggedUserStatus == "A" && LoggedCompanyStatus == "A")
+    {
+
+    }
+    else
+    {
+        Response.Redirect(Url.Action("Index", "Logout"));
+    }
+}
+
+
+<link href="~/Content/newcss/jquery-ui.css" rel="stylesheet" />
+
+
+<link href="~/Content/newcss/ng-grid.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/style.css" />
+
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+
+
+
+
+
+
+
+<script src="~/Content/jquery1.8.0/jquery.min.js"></script>
+
+
+<script src="~/Content/jquery1.9.1/jquery-1.9.1.js"></script>
+
+
+<script src="~/Content/jquery1.10.3/jquery-ui.js"></script>
+
+
+
+
+
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+
+    <div id="contentHeaderBox">
+        <h1 style="padding-left:16px">Item Filter Info</h1>
+    </div>
+    <br />
+    <div ng-app="itemFilterApp" data-ng-controller="ApiItemFilterController" @*class="container"*@>
+
+        <form name="addSpecHead" data-ng-show="addMode" style="width:600px;margin:0px auto;">
+         
+            @Html.HiddenFor(model => model.ItemId, new { id = "ItemId" })
+            <label>Item Name</label>
+            @Html.TextBoxFor(model => model.ItemName, new { @class = "form-control input-sm", id = "ItemName" })
+          
+            <br />
+            <br />
+            <input type="submit" value="Add" data-ng-click="add($event)" class="btn btn-primary" />
+
+            <br /><br />
+        </form>
+
+
+
+
+
+
+
+
+        <table class="table table-bordered table-hover" style="width:800px">
+            @*<tr>
+
+                <th>Filter Name</th>
+                <th>Filter Group Name</th>
+
+
+            </tr>*@
+            <tr>
+                <td hidden><input type="hidden" data-ng-model="newChild.ItemId" /></td>
+                <td hidden><input type="text" data-ng-model="newChild.FilterId" id="filterId" /></td>
+                <td hidden><input type="text" data-ng-model="newChild.FilterGroupid" id="filterGroupid" /></td>
+               
+                <td><label>Filter Group Name:</label><input type="text" data-ng-model="newChild.FilterGroupName" id="filterGroupName" required /></td>
+                <td><label>Filter Name:</label><input type="text" data-ng-model="newChild.FilterName" id="filterName" required /></td>
+                <td><input type="submit" value="Insert" data-ng-click="addrow($event)" class="btn btn-primary" /></td>
+            </tr>
+            <tr data-ng-repeat="itemFilter in ItemFilterData">
+
+                <td hidden><strong data-ng-hide="itemFilter.editMode">{{itemFilter.Id}}</strong></td>
+                <td hidden>
+                    <p data-ng-hide="itemFilter.editMode">{{ itemFilter.ItemId }}</p>
+
+                </td>
+                <td hidden>
+                    <p data-ng-hide="itemFilter.editMode" class="gridFilterid" >{{ itemFilter.FilterId }} </p>
+                   
+
+                </td>
+                <td hidden>
+                    <p data-ng-hide="itemFilter.editMode" class="gridFiltergid">{{ itemFilter.FilterGroupid }}</p>
+
+                </td>
+                
+                <td>
+                    <p data-ng-hide="itemFilter.editMode" id="gridFilterGroupname">{{ itemFilter.FilterGroupName }}</p>
+                    <input data-ng-show="itemFilter.editMode" type="text" data-ng-model="itemFilter.FilterGroupName" class="gridFilterGName" ng-change="FGName()" />
+                   
+                </td>
+                <td>
+                    <p data-ng-hide="itemFilter.editMode">{{ itemFilter.FilterName }}</p>
+
+                    <input data-ng-show="itemFilter.editMode" type="text" data-ng-model="itemFilter.FilterName" class="gridFilterName" ng-change="xyz()" @*onchange="groupcreate()"*@ />
+                </td>
+                <td>
+                    <p data-ng-hide="itemFilter.editMode"><a data-ng-click="toggleEdit(itemFilter)" href="javascript:;">Edit</a> | <a data-ng-click="deletefriend(itemFilter)" href="javascript:;">Delete</a></p>
+                    <p data-ng-show="itemFilter.editMode"><a data-ng-click="save(itemFilter)" href="javascript:;">Save</a> | <a data-ng-click="toggleEdit(itemFilter)" href="javascript:;">Cancel</a></p>
+
+                </td>
+            </tr>
+        </table>
+        <hr />
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#ItemName').autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+
+                        url: '/api/SpecItemSearch',
+                        type: 'GET',
+                        cache: false,
+                        data: { query: request.term },
+                        dataType: 'json',
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.ItemName,
+                                    value: item.ItemName,
+                                    id: item.ItemId
+                                };
+                            }));
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $('#ItemName').val(ui.item.label);
+                    $('#ItemId').val(ui.item.id);
+                    //document.getElementById("SpecificationName").focus();
+                    //return false;
+                },
+                change: $('#ItemName').keyup(_.debounce(txtOneChanged, 500))
+
+            });
+
+            $('#filterGroupName').autocomplete({
+                source: function (request, response) {
+                    //var itemid = $("#ItemId").val();
+                    $.ajax({
+
+                        url: '/api/FilterGroupNameSearch',
+                        type: 'GET',
+                        cache: false,
+                        data: { query: request.term },
+                        dataType: 'json',
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.FilterGroupName,
+                                    value: item.FilterGroupName,
+                                    id: item.FilterGroupid
+                                };
+                            }));
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $('#filterGroupName').val(ui.item.label);
+                    $('#filterGroupid').val(ui.item.id);
+                    change:txtOneChanged2();
+
+                },
+                change: $('#filterGroupName').keyup(_.debounce(txtOneChanged2, 500))
+
+            });
+
+            
+            $('#filterName').autocomplete({
+              
+                source: function (request, response) {
+                    var filtergid = $('#filterGroupid').val();
+                    $.ajax({
+
+                        url: '/api/FilterNameSearch',
+                        type: 'GET',
+                        cache: false,
+                        data: {
+                            query: request.term ,
+                            query2: filtergid
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.FilterName,
+                                    value: item.FilterName,
+                                    id: item.FilterId
+                                };
+                            }));
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $('#filterName').val(ui.item.label);
+                    $('#filterId').val(ui.item.id);
+                    change: txtOneChanged3();
+
+                },
+                change: $('#filterName').keyup(_.debounce(txtOneChanged3, 500))
+
+            });
+
+
+        });
+
+       
+
+        function txtOneChanged() {
+
+
+            var changedText = $("#ItemName").val();
+
+            var Name = document.getElementById('ItemName');
+            var txtBox = document.getElementById('ItemId');
+
+
+            if (changedText != "") {
+
+                $.getJSON(
+                    '/api/DynamicAutoSpecItem', { "ChangedText": changedText },
+                    function (result) {
+                        Name.value = result[0].ItemName;
+                        txtBox.value = result[0].ItemId;
+
+                        //document.getElementById("ItemName").focus();
+                    });
+            }
+
+
+
+        }
+
+        function txtOneChanged2() {
+
+
+            var changedText = $("#filterGroupName").val();
+           
+           
+            var filtergroupid = document.getElementById('filterGroupid');
+
+            var filtergname = document.getElementById('filterGroupName');
+            if (changedText != "") {
+
+                $.getJSON(
+                    '/api/DynamicAutoFiltGName', { "ChangedText": changedText },
+                    function (result) {
+                      
+                        filtergroupid.value = result[0].FilterGroupid;
+                        filtergname.value = result[0].FilterGroupName;
+
+                        //document.getElementById("filterGroupName").focus();
+                    });
+            }
+
+
+
+        }
+        function txtOneChanged3() {
+
+
+            var changedText = $("#filterName").val();
+            var changedText2 = $("#filterGroupid").val();
+          
+            var filtergroupid = document.getElementById('filterId');
+
+            var filtergname = document.getElementById('filterName');
+            if (changedText != "") {
+
+                $.getJSON(
+                    '/api/DynamicAutoFiltName', { "ChangedText": changedText, "ChangedText2": changedText2 },
+                    function (result) {
+                      
+                        filtergroupid.value = result[0].FilterId;
+                        filtergname.value = result[0].FilterName;
+
+                        document.getElementById("filterName").focus();
+                    });
+            }
+
+
+
+        }
+
+    </script>
+
+
+
+
+
+}
+
+
+
+@*<script src="~/Scripts/angularjs/1.0.2/angular.min.js"></script>*@
+
+
+<script src="~/Scripts/angularjs/1.0.5/angular.js"></script>
+<script src="~/Scripts/ItemFilter/ItemFilter.js"></script>
+
+<script src="~/Scripts/angularjs/ui-bootstrap-tpls-0.4.0.js"></script>
+
+
+
+<script src="~/Scripts/Underscore.js"></script>
+
+<script src="~/Scripts/angularjs/ng-grid.debug.js"></script>
+
+
+
+
+

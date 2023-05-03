@@ -1,0 +1,167 @@
+﻿@model AslWebCartAPI.Models.DTOs.CartItemDTO
+
+@{
+   
+}
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<br />
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    @Html.HiddenFor(model => model.ItemId, new { id = "txtItemId", style = "width:3em;", @readonly = "readonly" })
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="col-md-2"><span> <b>@Html.Label("name", "Item Name", htmlAttributes: new { @class = "control-label" })</b></span></div>
+
+                    <div class="col-md-6">
+
+                        @Html.TextBoxFor(model => model.ItemName, new { @class = "form-control input-sm", id = "txtItemNm" })
+                    </div>
+                    <div class="col-md-1"><input id="buttonApplyFilterId" type="submit" class="btn btn-info" value="Submit" name="command" /></div>
+
+                </div>
+                <div class="col-md-4"></div>
+                </div>
+
+            <br />
+            <div class="row">
+                
+                <div class="col-md-8">
+                    @Html.HiddenFor(model => model.CartFilterMstDTO.FilterGroupid, new { id = "txtFilterGroupId", style = "width:3em;", @readonly = "readonly" })
+                    <div class="col-md-4">
+                        <span>  @Html.Label("name", "Filter Group", htmlAttributes: new { @class = "control-label" })</span>
+                        @Html.TextBoxFor(model => model.CartFilterMstDTO.FilterGroupName, new { @class = "form-control input-sm", id = "txtFilterGroupName" })
+                    </div>
+                    @Html.HiddenFor(model => model.CartFilterDTO.FilterId, new { id = "txtFilterId", style = "width:3em;", @readonly = "readonly" })
+                    <div class="col-md-4">
+                        <span>  @Html.Label("name", "Filter Name", htmlAttributes: new { @class = "control-label" })</span>
+                        @Html.TextBoxFor(model => model.CartFilterDTO.FilterName, new { @class = "form-control input-sm", id = "txtFilterName" })
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="submit" class="btn btn-info input-sm" value="Add" id="btnAdd" name="command" style="margin-top:25px; margin-left:5px;padding-bottom: 25px" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        @*var url = '@Url.RouteUrl("DefaultApi",
+new { httproute = "", controller = "ApiCartCategory" })';*@
+
+
+
+        $('#txtItemNm').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    //url: url,
+                    //data: { query: request.term },
+                    //dataType: 'json',
+                    //type: 'GET',
+
+                    url: '/api/itemlist',
+                    type: 'GET',
+                    cache: false,
+                    data: { query: request.term },
+                    dataType: 'json',
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.ItemName,
+                                value: item.ItemId
+                            }
+                        }));
+                    }
+                })
+            },
+            select: function (event, ui) {
+                $('#txtItemNm').val(ui.item.label);
+                $('#txtItemId').val(ui.item.value);
+                return false;
+            },
+            minLength: 1
+        });
+
+
+
+        $('#txtFilterGroupName').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/api/filtergrouplist',
+                    type: 'GET',
+                    cache: false,
+                    data: { query: request.term },
+                    dataType: 'json',
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.FilterGroupName,
+                                value: item.FilterGroupid
+                            }
+                        }));
+                    }
+                })
+            },
+            select: function (event, ui) {
+                $('#txtFilterGroupName').val(ui.item.label);
+                $('#txtFilterGroupId').val(ui.item.value);
+                return false;
+            },
+            minLength: 1
+        });
+
+
+        $('#txtFilterName').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/api/filterlist',
+                    type: 'GET',
+                    cache: false,
+                    data: {
+                        query: request.term,
+                        filtergroupid: $("#txtFilterGroupId").val()
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.FilterName,
+                                value: item.FilterId
+                            }
+                        }));
+                    }
+                })
+            },
+            select: function (event, ui) {
+                $('#txtFilterName').val(ui.item.label);
+                $('#txtFilterId').val(ui.item.value);
+                return false;
+            },
+            minLength: 1
+        });
+
+
+    </script>
+}
+
+
+

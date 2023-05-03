@@ -1,0 +1,45 @@
+﻿@using System.Web.Services.Discovery
+@using AslWebCartAPI.Models
+@using AslWebCartAPI.Models.DTOs.CartItemDTO
+
+
+@{
+    ViewBag.Title = "ItemWiseFilterInformation";
+}
+
+<h2>ItemWiseFilterInformation</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="row">
+              
+
+                @*<div class="col-md-3">
+                    <span> @Html.Label("name", "Item Name", htmlAttributes: new { @class = "control-label" })</span>
+                    @Html.TextBoxFor(model => model., new { @class = "form-control input-sm", id = "txtItemNm" })
+                </div>
+                <div class="col-md-6">
+                    <span> @Html.Label("name", "Item Name", htmlAttributes: new { @class = "control-label" })</span>
+                    @Html.TextBoxFor(model => model.RmsItemModel.ITEMNM, new { @class = "form-control input-sm", id = "txtItemNm" })
+                    
+                </div>
+                <div class="col-md-2">
+                    <span>  @Html.Label("name", "Quantity", htmlAttributes: new { @class = "control-label" })</span>
+                    @Html.TextBoxFor(model => model.RmsTrans.QTY, new { @class = "form-control input-sm", id = "txtQty" })
+                   
+                </div>
+
+                <div class="col-md-1" style="text-align: right">
+                    <br />
+                    <input type="submit" class="btn btn-info" value="Add" id="btnAdd" name="command" style="padding-left: 7px;padding-right: 7px;margin-left: -22px" />*@
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+

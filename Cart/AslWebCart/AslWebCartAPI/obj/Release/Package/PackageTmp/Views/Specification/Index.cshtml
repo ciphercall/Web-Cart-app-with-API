@@ -1,0 +1,319 @@
+﻿@model AslWebCartAPI.Models.DTOs.CartSpecMstDTO
+
+@{
+    ViewBag.Title = "Index";
+
+    if (HttpContext.Current.Session["LoggedUserType"] == null)
+    {
+        Response.Redirect(Url.Action("Index", "Login"));
+    }
+
+    var LoggedUserTp = HttpContext.Current.Session["LoggedUserType"].ToString();
+    var LoggedUserStatus = HttpContext.Current.Session["LoggedUserStatus"].ToString();
+    var LoggedCompanyStatus = HttpContext.Current.Session["LoggedCompanyStatus"].ToString();
+
+    if ((LoggedUserTp == "CompanyAdmin" || LoggedUserTp == "AslSuperadmin") && LoggedUserStatus == "A" && LoggedCompanyStatus == "A")
+    {
+
+    }
+    else
+    {
+        Response.Redirect(Url.Action("Index", "Logout"));
+    }
+}
+
+
+<link href="~/Content/newcss/jquery-ui.css" rel="stylesheet" />
+
+
+<link href="~/Content/newcss/ng-grid.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/style.css" />
+
+
+
+
+
+
+
+
+
+<script src="~/Content/jquery1.8.0/jquery.min.js"></script>
+
+
+<script src="~/Content/jquery1.9.1/jquery-1.9.1.js"></script>
+
+
+<script src="~/Content/jquery1.10.3/jquery-ui.js"></script>
+
+
+
+
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+
+    <div id="contentHeaderBox">
+        <h1 style="padding-left:16px">Specification Information</h1>
+    </div>
+    <br />
+    <div ng-app="specApp" data-ng-controller="ApiSpecificationController" class="container">
+
+        <form name="addSpecHead" data-ng-show="addMode" style="width:600px;margin:0px auto;">
+            @*<label>ItemId</label>*@
+            @Html.HiddenFor(model => model.ItemId, new { id = "ItemId" })
+            <label>ItemName</label>
+            @Html.TextBoxFor(model => model.ItemName, new { @class = "form-control input-sm", id = "ItemName" })
+            @*<label>Specification SL</label>*@
+            @Html.HiddenFor(model => model.SpecificationSL, new { id = "SpecificationSL" })
+            <label>Specification Name</label>
+            @Html.TextBoxFor(model => model.SpecificationName, new { @class = "form-control input-sm", id = "SpecificationName" })
+            <label>View SL</label>
+            @Html.TextBoxFor(model => model.ViewSL, new { @class = "form-control input-sm", id = "ViewSL" })
+            <br />
+            <br />
+            <input type="submit" value="Add" data-ng-click="add($event)" class="btn btn-primary" />
+
+            <br /><br />
+        </form>
+
+
+
+
+
+
+
+
+        @*<form name="specChildform" style="width:1000px;margin:0px auto;">
+            <input type="hidden" data-ng-model="newChild.ItemId" />
+            <input type="hidden" data-ng-model="newChild.SpecificationSL" />
+            <label>Feature Type:</label><input type="text" data-ng-model="newChild.FeatureType" id="featureType" required />
+            <label>Feature:</label><input type="text" data-ng-model="newChild.Feature" id="feature" required />
+           
+            <input type="submit" value="Insert" data-ng-click="addrow()" class="btn btn-primary" />
+
+        </form>*@
+
+        <br />
+        <table class="table table-bordered table-hover" style="width:900px">
+            @*<tr>
+
+                <th>Feature Type</th>
+                <th>Feature</th>
+                
+
+            </tr>*@
+            <tr>
+                <td hidden><input type="hidden" data-ng-model="newChild.ItemId" /></td>
+                <td hidden><input type="hidden" data-ng-model="newChild.SpecificationSL" /></td>
+                <td><label>Feature Type:</label></td>
+               
+                <td><label>Feature:</label></td>
+               
+                
+            </tr>
+            <tr>
+                <td><input type="text" data-ng-model="newChild.FeatureType" id="featureType" required /></td>
+                <td><input type="text" data-ng-model="newChild.Feature" id="feature" required /></td>
+                <td><input type="submit" value="Insert" data-ng-click="addrow($event)" class="btn btn-primary" /></td>
+            </tr>
+            <tr data-ng-repeat="specItem in specificationData">
+
+                <td hidden><strong data-ng-hide="specItem.editMode">{{specItem.Id}}</strong></td>
+                <td hidden>
+                    <p data-ng-hide="specItem.editMode">{{ specItem.ItemId }}</p>
+
+                </td>
+                <td hidden>
+                    <p data-ng-hide="specItem.editMode">{{ specItem.SpecificationSL }}</p>
+
+                </td>
+                <td hidden>
+                    <p data-ng-hide="specItem.editMode">{{ specItem.FeatureSL }}</p>
+                   
+                </td>
+                <td>
+                    <p data-ng-hide="specItem.editMode">{{ specItem.FeatureType }}</p>
+
+                    <input data-ng-show="specItem.editMode" type="text" data-ng-model="specItem.FeatureType" id="gridFilternid" />
+                </td>
+                <td>
+                    <p data-ng-hide="specItem.editMode">{{ specItem.Feature }}</p>
+                    <input data-ng-show="specItem.editMode" type="text" data-ng-model="specItem.Feature" id="gridFilterSid" />
+                </td>
+
+                <td>
+                    <p data-ng-hide="specItem.editMode"><a data-ng-click="toggleEdit(specItem)" href="javascript:;">Edit</a> | <a data-ng-click="deletefriend(specItem)" href="javascript:;">Delete</a></p>
+                    <p data-ng-show="specItem.editMode"><a data-ng-click="save(specItem)" href="javascript:;">Save</a> | <a data-ng-click="toggleEdit(specItem)" href="javascript:;">Cancel</a></p>
+
+                </td>
+            </tr>
+        </table>
+        <hr />
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#ItemName').autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+
+                        url: '/api/SpecItemSearch',
+                        type: 'GET',
+                        cache: false,
+                        data: { query: request.term },
+                        dataType: 'json',
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.ItemName,
+                                    value: item.ItemName,
+                                    id: item.ItemId
+                                };
+                            }));
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $('#ItemName').val(ui.item.label);
+                    $('#ItemId').val(ui.item.id);
+                    change:txtOneChanged();
+                },
+                change: $('#ItemName').keyup(_.debounce(txtOneChanged, 500))
+
+            });
+
+            $('#SpecificationName').autocomplete({
+                source: function (request, response) {
+                    var itemid = $("#ItemId").val();
+                    $.ajax({
+
+                        url: '/api/SpecNameSearch',
+                        type: 'GET',
+                        cache: false,
+                        data: { query: request.term, ItemId: itemid },
+                        dataType: 'json',
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.SpecificationName,
+                                    value: item.SpecificationName,
+                                    id: item.SpecificationSL
+                                };
+                            }));
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $('#SpecificationName').val(ui.item.label);
+                    $('#SpecificationSL').val(ui.item.id);
+                    change:txtOneChanged2();
+                },
+                change: $('#SpecificationName').keyup(_.debounce(txtOneChanged2, 500))
+
+            });
+           
+
+
+
+        });
+        function txtOneChanged() {
+
+
+            var changedText = $("#ItemName").val();
+
+            var Name = document.getElementById('ItemName');
+            var txtBox = document.getElementById('ItemId');
+
+
+            if (changedText != "") {
+
+                $.getJSON(
+                    '/api/DynamicAutoSpecItem', { "ChangedText": changedText },
+                    function (result) {
+                        Name.value = result[0].ItemName;
+                        txtBox.value = result[0].ItemId;
+
+                        //document.getElementById("ItemName").focus();
+                    });
+            }
+
+
+
+        }
+
+        function txtOneChanged2() {
+
+
+            var changedText = $("#SpecificationName").val();
+            var changedText2 = $("#ItemId").val();
+
+            var Name = document.getElementById('SpecificationName');
+            var txtBox = document.getElementById('SpecificationSL');
+
+
+            if (changedText != "") {
+
+                $.getJSON(
+                    '/api/DynamicAutoSpecName', { "ChangedText": changedText,"ChangedText2":changedText2 },
+                    function (result) {
+                        Name.value = result[0].SpecificationName;
+                        txtBox.value = result[0].SpecificationSL;
+
+                        //document.getElementById("SpecificationName").focus();
+                    });
+            }
+
+
+
+        }
+
+    </script>
+
+
+
+
+
+}
+
+
+
+
+
+
+<script src="~/Scripts/angularjs/1.0.5/angular.js"></script>
+
+<script src="~/Scripts/Specification/specGrid.js"></script>
+<script src="~/Scripts/angularjs/ui-bootstrap-tpls-0.4.0.js"></script>
+
+
+
+<script src="~/Scripts/Underscore.js"></script>
+
+<script src="~/Scripts/angularjs/ng-grid.debug.js"></script>
+
+
+
+
+

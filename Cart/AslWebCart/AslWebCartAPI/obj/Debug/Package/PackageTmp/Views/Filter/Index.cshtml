@@ -1,0 +1,242 @@
+@model AslWebCartAPI.Models.DTOs.CartFilterMstDTO
+
+
+@{
+    ViewBag.Title = "Index";
+
+    if (HttpContext.Current.Session["LoggedUserType"] == null)
+    {
+        Response.Redirect(Url.Action("Index", "Login"));
+    }
+
+    var LoggedUserTp = HttpContext.Current.Session["LoggedUserType"].ToString();
+    var LoggedUserStatus = HttpContext.Current.Session["LoggedUserStatus"].ToString();
+    var LoggedCompanyStatus = HttpContext.Current.Session["LoggedCompanyStatus"].ToString();
+
+    if ((LoggedUserTp == "CompanyAdmin" || LoggedUserTp == "AslSuperadmin") && LoggedUserStatus == "A" && LoggedCompanyStatus == "A")
+    {
+
+    }
+    else
+    {
+        Response.Redirect(Url.Action("Index", "Logout"));
+    }
+}
+
+<link href="~/Content/newcss/jquery-ui.css" rel="stylesheet" />
+
+
+<link href="~/Content/newcss/ng-grid.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/style.css" />
+
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+
+
+
+
+
+
+
+<script src="~/Content/jquery1.8.0/jquery.min.js"></script>
+
+
+<script src="~/Content/jquery1.9.1/jquery-1.9.1.js"></script>
+
+
+<script src="~/Content/jquery1.10.3/jquery-ui.js"></script>
+
+
+@*<link href="~/Content/newcss/bootstrap-combined.min.css" rel="stylesheet" />*@
+
+
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+ 
+
+    <div id="contentHeaderBox">
+        <h1 style="padding-left:16px">Filter Information</h1>
+    </div>
+    <br />
+    <div ng-app="filterApp" data-ng-controller="ApiFilterItemController" @*class="container"*@>
+
+        <form name="addFilterHead" data-ng-show="addMode" style="width:600px;margin:0px auto;">
+         
+            @Html.HiddenFor(model => model.FilterGroupid, new { id = "txtFilgroupid", style = "width:3em;" })
+           <label>Filter GroupName</label>
+            @Html.TextBoxFor(model => model.FilterGroupName, new { @class = "form-control input-sm", id = "GroupName" })
+
+
+            <br />
+            <br />
+            <input type="submit" value="Add" data-ng-click="add($event)"class="btn btn-primary" />
+
+            <br /><br />
+        </form>
+
+
+
+     
+
+
+
+
+      
+        <table class="table table-bordered table-hover" style="width:900px">
+            @*<tr>
+               
+                <th>FILTERNM</th>
+                <th>FILTERNID</th>
+                <th>FILTERSID</th>
+
+            </tr>*@
+            <tr>
+                @*<input type="hidden" data-ng-model="newChild.FilterGroupid" />*@
+                <td><label>Filter Name:</label><input type="text" data-ng-model="newChild.FilterName" id="filternm" required /></td>
+                <td><label>Filter NID:</label><input type="text" data-ng-model="newChild.FilterNumericId" id="filternid" required /></td>
+                <td><label>Filter SID:</label><input type="text" data-ng-model="newChild.FilterShortId" id="filtersid" required /></td>
+                <td><input type="submit" value="Insert" data-ng-click="addrow($event)" class="btn btn-primary" /></td>
+            </tr>
+            <tr data-ng-repeat="filteritem in filterData">
+
+                <td hidden><strong data-ng-hide="filteritem.editMode">{{filteritem.Id}}</strong></td>
+                <td hidden>
+                    <p data-ng-hide="filteritem.editMode">{{ filteritem.FilterGroupid }}</p>
+                
+                </td>
+                <td hidden>
+                    <p data-ng-hide="filteritem.editMode">{{ filteritem.FilterId }}</p>
+                   
+                </td>
+                <td>
+                    <p data-ng-hide="filteritem.editMode">{{ filteritem.FilterName }}</p>
+                    <input data-ng-show="filteritem.editMode" type="text" data-ng-model="filteritem.FilterName" id="gridFilterName" />
+                </td>
+                <td>
+                    <p data-ng-hide="filteritem.editMode">{{ filteritem.FilterNumericId }}</p>
+
+                    <input data-ng-show="filteritem.editMode" type="text" data-ng-model="filteritem.FilterNumericId" id="gridFilternid" />
+                </td>
+                <td>
+                    <p data-ng-hide="filteritem.editMode">{{ filteritem.FilterShortId }}</p>
+                    <input data-ng-show="filteritem.editMode" type="text" data-ng-model="filteritem.FilterShortId" id="gridFilterSid" />
+                </td>
+
+                <td>
+                    <p data-ng-hide="filteritem.editMode"><a data-ng-click="toggleEdit(filteritem)" href="javascript:;">Edit</a> | <a data-ng-click="deletefriend(filteritem)" href="javascript:;">Delete</a></p>
+                    <p data-ng-show="filteritem.editMode"><a data-ng-click="save(filteritem)" href="javascript:;">Save</a> | <a data-ng-click="toggleEdit(filteritem)" href="javascript:;">Cancel</a></p>
+
+                </td>
+            </tr>
+        </table>
+        <hr />
+
+
+
+     
+
+    </div>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#GroupName').autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+
+                        url: '/api/filtergrouplist',
+                        type: 'GET',
+                        cache: false,
+                        data: { query: request.term },
+                        dataType: 'json',
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.FilterGroupName,
+                                    value: item.FilterGroupName,
+                                    id: item.FilterGroupid
+                                };
+                            }));
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $('#GroupName').val(ui.item.label);
+                    $('#txtFilgroupid').val(ui.item.id);
+                    return false;
+                },
+                change: $('#GroupName').keyup(_.debounce(txtOneChanged, 1000))
+            });
+
+           
+
+
+
+        });
+        function txtOneChanged() {
+
+
+            var changedText = $("#GroupName").val();
+
+            var Name = document.getElementById('GroupName');
+            var txtBox = document.getElementById('txtFilgroupid');
+
+
+            if (changedText != "") {
+
+                $.getJSON(
+                    '/api/DynamicautocompleteFilter', { "ChangedText": changedText },
+                    function (result) {
+                        Name.value = result[0].FilterGroupName;
+                        txtBox.value = result[0].FilterGroupid;
+
+                        document.getElementById("GroupName").focus();
+                    });
+            }
+
+
+
+        }
+
+    </script>
+
+
+
+
+
+}
+
+
+
+
+
+
+
+<script src="~/Scripts/angularjs/1.0.5/angular.js"></script>
+<script src="~/Scripts/Filter.js"></script>
+
+<script src="~/Scripts/angularjs/ui-bootstrap-tpls-0.4.0.js"></script>
+
+
+
+
+<script src="~/Scripts/Underscore.js"></script>
+
+<script src="~/Scripts/angularjs/ng-grid.debug.js"></script>
+
+
+

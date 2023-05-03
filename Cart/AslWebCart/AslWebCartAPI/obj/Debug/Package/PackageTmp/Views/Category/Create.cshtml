@@ -1,0 +1,211 @@
+﻿@using System.Web.UI.WebControls
+@using AslWebCartAPI.Models
+@model AslWebCartAPI.Models.DTOs.CartCategoryDTO
+
+@{
+    ViewBag.Title = "Create";
+
+    if (HttpContext.Current.Session["LoggedUserType"] == null)
+    {
+        Response.Redirect(Url.Action("Index", "Login"));
+    }
+
+    var LoggedUserTp = HttpContext.Current.Session["LoggedUserType"].ToString();
+    var LoggedUserStatus = HttpContext.Current.Session["LoggedUserStatus"].ToString();
+    var LoggedCompanyStatus = HttpContext.Current.Session["LoggedCompanyStatus"].ToString();
+
+    if ((LoggedUserTp == "CompanyAdmin" || LoggedUserTp == "AslSuperadmin") && LoggedUserStatus == "A" && LoggedCompanyStatus == "A")
+    {
+
+    }
+    else
+    {
+        Response.Redirect(Url.Action("Index", "Logout"));
+    }
+    
+    
+    
+    List<SelectListItem> levelgroup = new List<SelectListItem>();
+    levelgroup.Add(new SelectListItem { Text = "FIRST", Value = "FIRST" });
+    levelgroup.Add(new SelectListItem { Text = "LAST", Value = "LAST" });
+    levelgroup.Add(new SelectListItem { Text = "MIDDLE", Value = "MIDDLE" });
+
+
+
+
+
+}
+
+
+
+
+
+@* new added..................................... *@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="~/Content/AdminPanel/js/jquery-2.1.3.js"></script>
+@*<link href="~/Content/AdminPanel/css/bootstrap.min.css" rel="stylesheet" />*@
+<link href="~/Content/AdminPanel/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+
+
+@using (Html.BeginForm("Submit", "Category", FormMethod.Post,
+               new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+
+    @Html.HiddenFor(model => model.CategoryId, new { id = "txtCOSTCID" })
+
+
+
+    AslWebCartContext db = new AslWebCartContext();
+
+    <div id="contentHeaderBox">
+        <h1 style="padding-left:16px">Category Save Form</h1>
+        @if (TempData["CategoryMessage"] != null)
+        {
+            <div class="text-center">
+                <h6 style="color: #BD7F1C">@TempData["CategoryMessage"] </h6>
+            </div>
+            <br />
+        }
+    </div>
+    <br />
+    <div class="btn-group pull-right" id="editOption">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-expanded="false">
+            <i class="fa fa-cog"></i>
+        </button>
+        <ul class="dropdown-menu pull-right" style="" role="menu">
+
+            <li>
+                <a href="@Url.Action("Create", "Category")"><i class="fa fa-plus"></i> Create</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Update", "Category")"><i class="fa fa-edit"></i> Update</a>
+            </li>
+            @*<li>
+                    <a href="@Url.Action("Delete", "JobInformation")"><i class="fa fa-times"></i> Delete</a>
+                </li>*@
+
+        </ul>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="row">
+
+
+
+                <div class="col-md-2">
+                    @Html.Label("Category Name", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control", id = "categoryName", @placeholder = "Category Name", autofocus = true })
+
+                </div>
+
+
+                <div class="col-md-2">
+                    @Html.Label("Level Group Name", htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.LevelGroup, levelgroup, "--Select--", new { @class = "form-control", id = "levelGroup" })
+
+                </div>
+
+
+
+
+
+
+
+
+                <div class="col-md-3">
+                    @if (TempData["message"] != null)
+                    {
+
+                        <h6 style="color: #BD7F1C">@TempData["message"] </h6>
+
+                        <br />
+                    }
+                </div>
+
+
+            </div>
+           
+                <label for="photo">Upload Image:</label>
+            <input type="file" name="photo" id="photo" style="width: 100%;" />
+                @*<input type="submit" value="Upload" />*@
+            
+
+
+
+            <div class="row">
+                <div class="col-md-2">
+
+
+
+                    <input id="SubmitId" type="submit" class="btn btn-info" value="Submit" />
+
+
+
+                </div>
+            </div>
+        </div>
+        @{
+    var listofdata = (from n in db.KART_CATEGORY select n).ToList();
+        }
+        <div class="panel-heading">Category Information</div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+
+                    <th>
+                        Category Name
+                    </th>
+
+                    <th>
+                        Level Group
+                    </th>
+                    <th>Logo</th>
+                </tr>
+
+                @foreach (var item in listofdata)
+                {
+                    string im = Convert.ToString(item.CATID);
+                    string imageurl = "~/image-category/" + im + ".png";
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CATNM)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LEVELGR)
+                        </td>
+                       
+                        <td><img src="@Url.Content(imageurl)" width="20px" height="20px" /></td>
+                       
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+}
+
+
+
+
+@*<script src="~/Scripts/Category/Category.js"></script>*@

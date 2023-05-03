@@ -1,0 +1,349 @@
+﻿@using System.Data
+@using System.Data.SqlClient
+@using AslWebCartAPI.Controllers
+@using AslWebCartAPI.Models
+@model AslWebCartAPI.Models.PageModel
+
+
+@{
+    ViewBag.Title = "ShowJob";
+
+    if (HttpContext.Current.Session["LoggedUserType"] == null)
+    {
+        Response.Redirect(Url.Action("Index", "Login"));
+    }
+
+    var LoggedUserTp = HttpContext.Current.Session["LoggedUserType"].ToString();
+    var LoggedUserStatus = HttpContext.Current.Session["LoggedUserStatus"].ToString();
+    var LoggedCompanyStatus = HttpContext.Current.Session["LoggedCompanyStatus"].ToString();
+
+    if ((LoggedUserTp == "CompanyAdmin" || LoggedUserTp == "AslSuperadmin") && LoggedUserStatus == "A" && LoggedCompanyStatus == "A")
+    {
+
+    }
+    else
+    {
+        Response.Redirect(Url.Action("Index", "Logout"));
+    }
+
+    Int64 compid = Convert.ToInt64(System.Web.HttpContext.Current.Session["loggedCompID"]);
+    AslWebCartContext db = new AslWebCartContext();
+    var abc = AppController.Global.GlobalVariable;
+}
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.js"></script>
+
+<script type="text/javascript">
+
+    //function Show_Div(Div_id) {
+    //    if (false == $(Div_id).is(':visible')) {
+    //        $(Div_id).show(250);
+    //    }
+    //    else {
+    //        $(Div_id).hide(250);
+    //    }
+    //}
+</script>
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    @Html.Hidden("name", "forslide", new { id = "txtslidestatus", @Value = abc })
+    @*@Html.HiddenFor(model => model.USERID, new { id = "txtUserId" })*@
+
+
+    @*<div id="Div_1" style=" background-color: #ffffdd; width: 300px;">
+       
+    I am div
+    <br />
+    you can see me.
+</div>*@
+
+    <div id="contentHeaderBox">
+        <h1></h1>
+        @*<input type="button" value="Click me to show or hidden div" onclick="Show_Div(Div_1)" id="divslide" />*@
+    </div>
+    <br />
+
+    <div class="col-md-12">
+
+       @*<table id="mainTable" border="0" width="100%">
+            <thead>
+                <tr>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="10%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+                    <td width="5%"></td>
+
+                </tr>
+                <tr style="background-color: #00689b; outline: thin solid">
+                    <td colspan="9" style="color: white; padding: 4px" align="center">Import</td>
+                    <td colspan="9" style="color: white; padding: 4px" align="center">Export</td>
+                </tr>
+
+                @{
+
+
+                }
+
+
+                <tr style="background-color: #00689b; outline: thin solid">
+
+                    <td colspan="2" style="color: white; padding: 4px;font-size:small" align="center">Job No</td>
+                    <td colspan="2" style="color: white; padding: 4px;font-size:small" align="center">Job Date</td>
+                    <td colspan="4" style="color: white; padding: 4px;font-size:small" align="left">Party Name</td>
+                    <td colspan="1"></td>
+                    <td colspan="2" style="color: white; padding: 4px;font-size:small">Job No</td>
+                    <td colspan="3" style="color: white; padding: 4px;font-size:small" align="left">Job Date</td>
+                    <td colspan="4" style="color: white; padding: 4px;font-size:small" align="left">Party Name</td>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+                @{
+    TimeZoneInfo timeZoneInfo;
+    timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Central Asia Standard Time");
+    DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, timeZoneInfo);
+
+
+    string TIME = currentDateTime.ToString("dd-MMM-yyyy");
+    int length = TIME.Length;
+    string year = TIME.Substring(length - 4, 4);
+    Int64 YY = Convert.ToInt64(year);
+    var getExport = (from n in db.CnfJobDbSet
+                     where n.COMPID == compid && n.JOBYY == YY
+                     && n.JOBTP == "EXPORT"
+                     select n).OrderByDescending(x => x.JOBYY).ThenByDescending(x => x.JOBNO).ToList();
+
+    var getImport = (from n in db.CnfJobDbSet
+                     where n.COMPID == compid && n.JOBYY == YY
+                     && n.JOBTP == "IMPORT"
+                     select n).OrderByDescending(x => x.JOBYY).ThenByDescending(x => x.JOBNO).ToList();
+    var accountlist = (from n in db.GlAcchartDbSet where n.COMPID == compid select n).ToList();
+
+
+                }
+                @if (getImport.Count != 0 || getExport.Count != 0)
+                {
+                    <tr style="outline: thin solid">
+                        <td colspan="9" valign="top">
+                            <table class="reportDetails" cellspacing="0" width="100%">
+
+
+
+                                @foreach (var item2 in getImport)
+                                {
+                                    var accountname = "";
+                                    <tr style="outline: thin solid">
+                                        <td colspan="2" style="font-size: small; padding: 4px" width="20%" align="center">
+
+                                            @item2.JOBNO
+
+
+                                        </td>
+                                        @{
+                                    string d = Convert.ToString(item2.JOBCDT);
+                                    DateTime fdate = DateTime.Parse(d);
+                                    string ffdt = fdate.ToString("dd-MMM-yyyy");
+                                        }
+                                        <td colspan="2">@ffdt</td>
+                                        @foreach (var aac in accountlist)
+                                        {
+                                            if (aac.ACCOUNTCD == item2.PARTYID)
+                                            {
+                                                <td colspan="4" align="left" style="padding: 2px; font-size: small" width="50%">
+                                                    @aac.ACCOUNTNM
+                                                </td>
+                                                accountname = aac.ACCOUNTNM;
+                                                break;
+                                            }
+                                        }
+
+                                        <td colspan="1" align="center" style="padding: 2px; font-size: small">
+                                            <span>
+                                                <a href="@Url.Action("IndexPost", new { tid = item2.Cnf_JobID, compid = item2.COMPID, jobno = item2.JOBNO, type = "IMPORT", partyname = accountname, year = 2015, item2 })" class="btn btn-sm btn-danger" target="_blank">
+                                                  
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                </a>
+                                            </span>
+
+
+                                        </td>
+                                    </tr>
+
+                                }
+
+
+                            </table>
+
+                        </td>
+                        <td colspan="9" valign="top">
+                            <table class="reportDetails" cellspacing="0" width="100%">
+
+                                @foreach (var item in getExport)
+                                {
+                                    var accountname = "";
+                                    <tr style="outline: thin solid">
+                                        <td colspan="2" style="font-size: small; padding: 4px" align="left" width="20%">
+
+                                            @item.JOBNO
+
+
+                                        </td>
+                                        @{
+                                    string d = Convert.ToString(item.JOBCDT);
+                                    DateTime fdate = DateTime.Parse(d);
+                                    string ffdt = fdate.ToString("dd-MMM-yyyy");
+                                        }
+                                        <td colspan="3">@ffdt</td>
+                                        @foreach (var aac in accountlist)
+                                        {
+                                            if (aac.ACCOUNTCD == item.PARTYID)
+                                            {
+                                                <td colspan="4" align="left" style="padding: 2px; font-size: small" width="50%">
+
+                                                    @aac.ACCOUNTNM
+
+                                                </td>
+                                                accountname = aac.ACCOUNTNM;
+                                                break;
+                                            }
+                                        }
+                                        <td colspan="1" align="center" style="padding: 2px; font-size: small">
+                                            <span>
+                                                <a href="@Url.Action("IndexPost", new { tid = item.Cnf_JobID, compid = item.COMPID, jobno = item.JOBNO, type = "EXPORT", partyname = accountname, year = 2015, item })" class="btn btn-sm btn-danger" target="_blank">
+                                                   
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                </a>
+                                            </span>
+
+
+                                        </td>
+                                    </tr>
+
+
+
+
+                                }
+
+
+                            </table>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    //Auto complete
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            //$(function () {
+
+            //    $('#divslide').click(function () {
+            //        var txt = document.getElementById('txtslidestatus');
+            //        if (txt.value == 0) {
+            //            $('#txtslidestatus').val("1");
+            //        } else {
+            //            $('#txtslidestatus').val("0");
+                       
+            //        }
+                   
+
+            //    });
+
+            //});
+          
+        });
+
+    </script>
+
+
+    <style type="text/css">
+        .ui-autocomplete {
+            position: absolute;
+            cursor: default;
+            background: #f0ffff;
+        }
+
+        /* workarounds */
+        html .ui-autocomplete {
+            width: 1px;
+        }
+        /* without this, the menu expands to 100% in IE6 */
+        .ui-menu {
+            list-style: none;
+            padding: 2px;
+            margin: 0;
+            display: block;
+            float: left;
+        }
+
+            .ui-menu .ui-menu {
+                margin-top: -3px;
+            }
+
+            .ui-menu .ui-menu-item {
+                margin: 0;
+                padding: 0;
+                zoom: 1;
+                float: left;
+                clear: left;
+                width: 100%;
+            }
+
+                .ui-menu .ui-menu-item a {
+                    text-decoration: none;
+                    display: block;
+                    padding: .2em .4em;
+                    line-height: 1.5;
+                    zoom: 1;
+                }
+
+                    .ui-menu .ui-menu-item a.ui-state-hover,
+                    .ui-menu .ui-menu-item a.ui-state-active {
+                        font-weight: normal;
+                        margin: -1px;
+                    }
+    </style>
+
+}
+
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="~/Content/jquery1.9.1/jquery-1.9.1.js"></script>
+
+
+<script src="~/Scripts/jquery-ui-1.10.4.js"></script>

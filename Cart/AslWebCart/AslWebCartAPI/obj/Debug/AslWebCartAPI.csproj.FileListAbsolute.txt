@@ -1,0 +1,231 @@
+E:\Cart\AslWebCart\AslWebCartAPI\bin\App_Data\XmlDocument.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.dll.config
+E:\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.pdb
+E:\Cart\AslWebCart\AslWebCartAPI\bin\XmlDocument.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Antlr3.Runtime.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\AspNet.ScriptManager.bootstrap.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\AspNet.ScriptManager.jQuery.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.SqlServer.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.FriendlyUrls.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Facebook.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Google.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Twitter.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.ScriptManager.MSAjax.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.ScriptManager.WebForms.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Newtonsoft.Json.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Owin.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Net.Http.Formatting.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Cors.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Helpers.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.Cors.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.WebHost.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Mvc.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Optimization.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Providers.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Razor.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Deployment.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Razor.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\WebGrease.dll
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Newtonsoft.Json.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Net.Http.Formatting.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Helpers.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.Cors.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.WebHost.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Mvc.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Razor.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Deployment.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Razor.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Optimization.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Antlr3.Runtime.pdb
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.FriendlyUrls.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.SqlServer.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Providers.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Facebook.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Google.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Twitter.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.Migrations.InitialCreate.resources
+E:\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.Migrations.InitialCreate1.resources
+E:\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.Migrations.InitialCreate2.resources
+E:\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.Migrations.InitialCreate3.resources
+E:\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.Migrations.InitialCreate4.resources
+E:\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.csproj.GenerateResource.Cache
+E:\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.dll
+E:\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.pdb
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\App_Data\XmlDocument.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.dll.config
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.pdb
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\XmlDocument.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Antlr3.Runtime.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\AspNet.ScriptManager.bootstrap.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\AspNet.ScriptManager.jQuery.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.SqlServer.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Google.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.ScriptManager.WebForms.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Newtonsoft.Json.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Owin.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Net.Http.Formatting.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Cors.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Helpers.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.Cors.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.WebHost.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Mvc.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Optimization.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Providers.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Razor.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Deployment.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Razor.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\WebGrease.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Newtonsoft.Json.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Net.Http.Formatting.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Helpers.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.Cors.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.WebHost.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Mvc.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Razor.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Deployment.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Razor.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Optimization.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Antlr3.Runtime.pdb
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.SqlServer.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Providers.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Google.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.Migrations.InitialCreate.resources
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.Migrations.aslwebcart.resources
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.csproj.GenerateResource.Cache
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.dll
+D:\Visual Studio 13\SvnRepo\shimul\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.pdb
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\App_Data\XmlDocument.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.dll.config
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\AslWebCartAPI.pdb
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\XmlDocument.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Antlr3.Runtime.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\AspNet.ScriptManager.bootstrap.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\AspNet.ScriptManager.jQuery.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.SqlServer.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.FriendlyUrls.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Core.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Cookies.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Facebook.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Google.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.OAuth.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Twitter.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.ScriptManager.MSAjax.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.ScriptManager.WebForms.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Newtonsoft.Json.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Owin.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Net.Http.Formatting.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Cors.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Helpers.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.Cors.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.WebHost.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Mvc.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Optimization.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Providers.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Razor.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Deployment.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Razor.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\WebGrease.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Newtonsoft.Json.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Net.Http.Formatting.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Helpers.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.Cors.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Http.WebHost.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Mvc.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Razor.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Deployment.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.WebPages.Razor.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Optimization.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Antlr3.Runtime.pdb
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.FriendlyUrls.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\EntityFramework.SqlServer.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Core.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\System.Web.Providers.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Facebook.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Cookies.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Google.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.Twitter.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\bin\Microsoft.Owin.Security.OAuth.xml
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.csprojResolveAssemblyReference.cache
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.Migrations.InitialCreate.resources
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.csproj.GenerateResource.Cache
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.dll
+F:\.Net Project-ON\shimul\WebCartApi (webApi + MVC5)\Cart\AslWebCart\AslWebCartAPI\obj\Debug\AslWebCartAPI.pdb

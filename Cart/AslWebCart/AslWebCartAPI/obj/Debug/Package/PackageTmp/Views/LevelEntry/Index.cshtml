@@ -1,0 +1,404 @@
+﻿@model AslWebCartAPI.Models.DTOs.CartLevelMstDTO
+
+@{
+    ViewBag.Title = "Index";
+
+    if (HttpContext.Current.Session["LoggedUserType"] == null)
+    {
+        Response.Redirect(Url.Action("Index", "Login"));
+    }
+
+    var LoggedUserTp = HttpContext.Current.Session["LoggedUserType"].ToString();
+    var LoggedUserStatus = HttpContext.Current.Session["LoggedUserStatus"].ToString();
+    var LoggedCompanyStatus = HttpContext.Current.Session["LoggedCompanyStatus"].ToString();
+
+    if ((LoggedUserTp == "CompanyAdmin" || LoggedUserTp == "AslSuperadmin") && LoggedUserStatus == "A" && LoggedCompanyStatus == "A")
+    {
+
+    }
+    else
+    {
+        Response.Redirect(Url.Action("Index", "Logout"));
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />*@
+<link href="~/Content/newcss/jquery-ui.css" rel="stylesheet" />
+
+
+
+<link rel="stylesheet" href="~/Content/style.css" />
+@*<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">*@
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+
+
+
+
+
+
+<script src="~/Content/jquery1.8.0/jquery.min.js"></script>
+
+
+<script src="~/Content/jquery1.9.1/jquery-1.9.1.js"></script>
+
+
+<script src="~/Content/jquery1.10.3/jquery-ui.js"></script>
+
+
+
+
+
+
+
+@{
+    List<SelectListItem> listlvlgtp = new List<SelectListItem>();
+    listlvlgtp.Add(new SelectListItem { Text = "CATEGORY", Value = "CATEGORY" });
+    listlvlgtp.Add(new SelectListItem { Text = "ITEM-GROUP", Value = "ITEM-GROUP" });
+
+    List<SelectListItem> listlvltp = new List<SelectListItem>();
+    listlvltp.Add(new SelectListItem { Text = "CATEGORY", Value = "CATEGORY" });
+    listlvltp.Add(new SelectListItem { Text = "ITEM-GROUP", Value = "ITEM-GROUP" });
+    listlvltp.Add(new SelectListItem { Text = "ITEM-SINGLE", Value = "ITEM-SINGLE" });
+}
+
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <div id="contentHeaderBox">
+        <h1 style="padding-left:16px">Level Information</h1>
+    </div>
+    <br />
+    <div ng-app="userApp" data-ng-controller="ApiLevelEntryController" @*class="container"*@>
+
+
+
+        <form name="addLevelHead" data-ng-show="addMode">
+            <span> @Html.Label("name", "Level Group type", htmlAttributes: new { @class = "control-label" })</span>
+            @Html.DropDownListFor(model => model.LevelGroupType, listlvlgtp, "-Select-", new { id = "LevelGroupType", @class = "form-control input-sm", style = "width:12em;", autofocus = true })
+            <span> @Html.Label("name", "Level Group Name", htmlAttributes: new { @class = "control-label" })</span>
+            @Html.TextBoxFor(model => model.LevelGroupId, new { id = "LevelGroupId", @class = "form-control input-sm",@readonly="readonly" })
+            @Html.TextBoxFor(model => model.LevelGroupName, new { @class = "form-control input-sm", id = "LevelGroupName" })
+            <br />
+
+            <input type="submit" value="Search" data-ng-click="add($event)" class="btn btn-primary" id="searchid" />
+            <div class="alert alert-success" id="success-alert">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <strong>Continue! </strong>
+                @*Product have added to your wishlist.*@
+            </div>
+        </form>
+
+
+
+        <br />
+        <table class="table table-bordered table-hover" style="width:900px">
+            <tr>
+                <th>Level Type</th>
+                <td>Level Name</td>
+                <th>Level Name New </th>
+            </tr>
+
+            <tr>
+                <td>@Html.DropDownListFor(model => model.LevelType, listlvltp, "-Select-", new { id = "LevelType", data_ng_model = "newChild.LevelType", @class = "form-control input-sm" })</td>
+                <td>@Html.TextBoxFor(model => model.LevelName, new { @class = "form-control input-sm", data_ng_model = "newChild.LevelName", id = "LevelName" })</td>
+                @Html.HiddenFor(model => model.LevelId, new { id = "LevelId", data_ng_model = "newChild.LevelId", @class = "form-control input-sm" })
+                <td>@Html.TextBoxFor(model => model.LevelNameNew, new { @class = "form-control input-sm", data_ng_model = "newChild.LevelNameNew", id = "LevelNameNew" })</td>
+                <td><input type="submit" value="Add" data-ng-click="addrow($event)" class="btn btn-primary" /></td>
+
+            </tr>
+
+            <tr data-ng-repeat="grid in gridValue">
+
+
+                <td hidden>
+                    <p data-ng-hide="grid.editMode">{{ grid.LevelGroupId }}</p>
+
+                </td>
+                <td hidden><strong data-ng-hide="grid.editMode">{{ grid.Id }}</strong></td>
+
+                <td>
+                    <p data-ng-hide="grid.editMode">{{ grid.LevelType }}</p>
+                    @Html.DropDownListFor(model => model.LevelType, listlvltp, "-Select-", new
+               {
+                   @class = "gridLevelType",
+                   data_ng_show = "grid.editMode",
+                   data_ng_model = "grid.LevelType" @*@class = "form-control input-sm"*@ })
+
+                </td>
+
+                <td>
+                    <p data-ng-hide="grid.editMode">{{ grid.LevelName }}</p>
+                    @*@Html.TextBoxFor(model => model.LevelName, new { @class = "form-control input-sm", data_ng_show = "grid.editMode", data_ng_model = "grid.LevelName", id = "gridLevelName" })*@
+                    <input data-ng-show="grid.editMode" type="text" data-ng-model="grid.LevelName" class="gridLevelName" id="idgridLevelName" ng-change="x(grid.LevelName)" />
+
+
+
+                </td>
+                <td>
+                    <p data-ng-hide="grid.editMode">{{ grid.LevelId }}</p>
+                    @*@Html.TextBoxFor(model => model.LevelId, new { id = "gridLevelId", data_ng_show = "grid.editMode", data_ng_model = "grid.LevelId", @class = "form-control input-sm" })*@
+                    <input data-ng-show="grid.editMode" type="text" data-ng-model="grid.LevelId" class="gridLevelId" id="idgridLevelID" />
+                </td>
+
+                <td>
+                    <p data-ng-hide="grid.editMode">{{ grid.LevelNameNew }}</p>
+                    @*@Html.TextBoxFor(model => model.LevelNameNew, new { @class = "form-control input-sm", data_ng_show = "grid.editMode", data_ng_model = "grid.LevelNameNew", id = "gridLevelNameNew" })*@
+                    <input data-ng-show="grid.editMode" type="text" data-ng-model="grid.LevelNameNew" id="gridLevelNameNew" />
+                </td>
+
+                <td>
+                    <p data-ng-hide="grid.editMode"><a data-ng-click="toggleEdit(grid)" href="javascript:;">Edit</a> | <a data-ng-click="deletegrid(grid)" href="javascript:;">Delete</a></p>
+                    <p data-ng-show="grid.editMode"><a data-ng-click="save(grid)" href="javascript:;">Save</a> | <a data-ng-click="toggleEdit(grid)" href="javascript:;">Cancel</a></p>
+
+                </td>
+
+            </tr>
+
+        </table>
+        <hr />
+
+    </div>
+
+}
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#success-alert").hide();
+
+        $('#LevelName').autocomplete({
+            source: function (request, response) {
+
+                var params = {
+                    type: 'GET',
+                    cache: false,
+                    data: { query: request.term },
+                    dataType: 'json',
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.LevelGroupName,
+                                value: item.LevelGroupName,
+                                x: item.LevelGroupId
+                            };
+                        }));
+                    }
+                };
+
+                var num = document.getElementById('LevelType').value;
+
+                if (num == "CATEGORY") {
+                    params.url = '/api/CategoryWiseLevelLast';
+
+                } else if (num == "ITEM-GROUP") {
+                    params.url = '/api/ItemWiseLevel';
+
+                } else if (num == "ITEM-SINGLE") {
+                    params.url = '/api/ItemsingleWiseLevel';
+
+                }
+
+                $.ajax(params);
+
+
+
+            },
+            select: function (event, ui) {
+                $('#LevelName').val(ui.item.label);
+                $('#LevelId').val(ui.item.x);
+                return false;
+            },
+            minLength: 1
+        });
+
+        $("#searchid").click(function showAlert() {
+            $("#success-alert").alert();
+            $("#success-alert").fadeTo(1000, 200).slideUp(200, function () {
+                $("#success-alert").alert('close');
+            });
+        });
+
+    });
+
+</script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+        $('#LevelGroupName').autocomplete({
+            source: function (request, response) {
+
+                var params = {
+                    type: 'GET',
+                    cache: false,
+                    data: { query: request.term },
+                    dataType: 'json',
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Text,
+                                value: item.Text,
+                                x: item.Value
+                            };
+                        }));
+                    }
+                };
+
+                var num = document.getElementById('LevelGroupType').value;
+
+                if (num == "CATEGORY") {
+                    params.url = '/api/CategoryWiseLevel';
+
+
+
+
+
+                } else if (num == "ITEM-GROUP") {
+                    params.url = '/api/ItemWiseLevel';
+
+                }
+
+                $.ajax(params);
+
+
+
+            },
+            select: function (event, ui) {
+                $('#LevelGroupName').val(ui.item.label);
+                $('#LevelGroupId').val(ui.item.x);
+                return false;
+            },
+
+            change: $('#LevelGroupName').keyup(_.debounce(txtOneChanged, 1000))
+
+        });
+
+        $('#LevelName').autocomplete({
+            source: function (request, response) {
+                var leveltype = $('#LevelType').val();
+                var params = {
+                    type: 'GET',
+                    cache: false,
+                    data: { query: request.term },
+                    dataType: 'json',
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Text,
+                                value: item.Text,
+                                x: item.Value
+                            };
+                        }));
+                    }
+                };
+
+
+
+                if (leveltype == "CATEGORY") {
+                    params.url = '/api/test';
+
+                } else if (leveltype == "ITEM-GROUP") {
+                    params.url = '/api/ItemWiseLevel';
+
+                } else if (leveltype == "ITEM-SINGLE") {
+                    params.url = '/api/ItemsingleWiseLevel';
+
+                }
+
+                $.ajax(params);
+
+
+
+            },
+            select: function (event, ui) {
+                $('#LevelName').val(ui.item.label);
+                $('#LevelId').val(ui.item.x);
+
+                return true;
+            },
+            minLength: 1,
+
+
+
+        });
+
+       
+
+
+    });
+
+    function txtOneChanged() {
+
+
+        var changedText = $("#LevelGroupName").val();
+        var changedText2 = $("#LevelGroupType").val();
+
+        var Name = document.getElementById('LevelGroupName');
+        var txtBox = document.getElementById('LevelGroupId');
+
+
+        if (changedText != "") {
+
+            $.getJSON(
+                '/api/DynamicautocompleteLevel', { "ChangedText": changedText, "ChangedText2": changedText2 },
+                function (result) {
+                    Name.value = result[0].LevelGroupName;
+                    txtBox.value = result[0].LevelGroupId;
+
+                    document.getElementById("LevelGroupName").focus();
+                });
+        }
+
+
+
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+<script src="~/Scripts/angularjs/1.0.5/angular.js"></script>
+
+<script src="~/Scripts/controllers/LevelGrid.js"></script>
+
+
+<script src="~/Scripts/angularjs/ui-bootstrap-tpls-0.4.0.js"></script>
+
+
+
+
+<script src="~/Scripts/Underscore.js"></script>
+
+
+
